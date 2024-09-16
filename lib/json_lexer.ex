@@ -13,7 +13,7 @@ defmodule JsonLexer do
   end
 
   defp do_tokenize([]), do: []
-  defp do_tokenize([head | tail]) when head in '\t\n\r', do: do_tokenize(tail)
+  defp do_tokenize([head | tail]) when head in ~c'\t\n\r', do: do_tokenize(tail)
   defp do_tokenize([head | tail]) when head == ?{ do
     [:open_object | do_tokenize(tail)]
   end

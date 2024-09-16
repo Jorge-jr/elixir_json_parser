@@ -39,7 +39,7 @@
     defp parse_value(value), do: parse_value(value, get_type(value))
     defp parse_value([:open_object, :close_object], _), do: %{}
     defp parse_value(value, :object), do: parse_object([value])
-    defp parse_value(value, {:error, "Bad syntax"}), do: {:error, "Bad syntax"}
+    defp parse_value(_, {:error, "Bad syntax"}), do: {:error, "Bad syntax"}
     defp parse_value(value_list, :string), do: parse_string(value_list)
     defp parse_value(value_list, :list), do: parse_list(value_list)
     defp parse_value(_, :true), do: true
@@ -81,13 +81,13 @@
     defp parse_string([head | tail], result), do: parse_string(tail, result ++ [head])
 
     defp parse_list(list), do: parse_list(list, [])
-    defp parse_list([:open_list| tail], result) when hd(tail) == ?', do: {:error, "Bad syntax"}
+    defp parse_list([:open_list| tail], _) when hd(tail) == ?', do: {:error, "Bad syntax"}
     defp parse_list([:close_list|_], result), do: result
 
     defp parse_list([:open_list | tail], result) when result != [] do  # possibly nested list
       nested_list_end = tail
                         |> Enum.with_index()
-                        |> Enum.find(fn {x,y} -> x == :close_list end)
+                        |> Enum.find(fn {x,_} -> x == :close_list end)
                         |> elem(1)
 
       nested_list = Enum.slice(tail, 0 .. nested_list_end - 1)
@@ -100,7 +100,7 @@
     defp parse_list([:string | tail], result) do
       string_end = tail
                         |> Enum.with_index()
-                        |> Enum.find(fn {x,y} -> x == :string end)
+                        |> Enum.find(fn {x,_} -> x == :string end)
                         |> elem(1)
 
       string = tail
