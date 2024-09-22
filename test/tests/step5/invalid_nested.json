@@ -1,0 +1,9 @@
+{
+  "valid": {
+    "nested": "object"
+  },
+  "invalid": {
+    "missing": "comma"
+  }
+  "this": "should cause an error"
+}

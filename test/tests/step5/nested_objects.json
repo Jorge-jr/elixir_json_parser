@@ -1,0 +1,16 @@
+{
+  "name": "John Doe",
+  "age": 30.0,
+  "address": {
+    "street": "123 Main St",
+    "city": "Anytown",
+    "country": "USA"
+  },
+  "contacts": {
+    "email": "john@example.com",
+    "phone": {
+      "home": "555-1234",
+      "work": "555-5678"
+    }
+  }
+}
