@@ -6,27 +6,17 @@ This project is a JSON parser implementation based on the challenge from [Coding
 
 This JSON parser is designed to parse JSON (JavaScript Object Notation) data, a lightweight data-interchange format widely used for transmitting data over the Internet. The parser is built from scratch, following the formal JSON specification as defined by the IETF [here](https://tools.ietf.org/html/std90).
 
-## Features
-
-The parser implements the following features:
-
-1. Parsing of simple JSON objects (`{}`)
-2. Parsing of JSON objects with string keys and string values
-3. Parsing of JSON objects with string, numeric, boolean, and null values
-4. Parsing of JSON objects with nested objects and arrays
-5. Validation of JSON syntax with appropriate error messages for invalid JSON
-
 ## Project Structure
 
-[Describe your project structure here]
+[]
 
 ## How to Use
 
-[Provide instructions on how to use your JSON parser]
+[]
 
 ## Testing
 
-The project includes a comprehensive test suite to ensure the parser's correctness. Tests are organized into the following stages:
+The project includes a test suite to ensure the parser's correctness. Tests are organized into the following stages:
 
 1. Step 1: Parsing simple `{}` objects and invalid JSON
 2. Step 2: Parsing objects with string keys and values
@@ -44,7 +34,7 @@ Contributions to improve the JSON parser are welcome. Please feel free to submit
 
 ## License
 
-[Specify your license here]
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
