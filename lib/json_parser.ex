@@ -1,8 +1,11 @@
 defmodule JsonParser do
+  def parse(input) when hd(input) != :open_object and hd(input) != :open_list do
+    {:error, "Bad syntax: missing open object or list"}
+  end
   def parse(tokens) do
     case parse_value(tokens) do
       {result, []} -> {:ok, result}
-      {:error, reason} -> {:error, reason}  # Pass through the error directly
+      {:error, reason} -> {:error, reason}
       {_, remaining} -> {:error, detect_error(remaining)}
     end
   end

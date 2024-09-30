@@ -12,7 +12,7 @@ defmodule JsonParserstep4Test do
   @tag :invalid
   test "invalid JSON object" do
     result = parse_json_file("C:\\Users\\JSRIB\\Estudo\\Elixir\\Json parser\\json_parser\\test\\tests\\step4\\invalid.json")
-    assert result ==  {:error, "Unexpected token: 39"}
+    assert result ==  {:error, "Bad syntax: missing open object or list"}
   end
 
   @tag :valid

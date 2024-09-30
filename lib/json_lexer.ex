@@ -6,9 +6,7 @@ defmodule JsonLexer do
     |> Enum.reverse()
   end
 
-
   defp do_tokenize([], acc), do: acc
-
   defp do_tokenize([?{ | rest], acc), do: do_tokenize(rest, [:open_object | acc])
   defp do_tokenize([?} | rest], acc), do: do_tokenize(rest, [:close_object | acc])
   defp do_tokenize([?[ | rest], acc), do: do_tokenize(rest, [:open_list | acc])
@@ -44,13 +42,12 @@ defmodule JsonLexer do
   defp tokenize_string([?" | rest], acc), do: {to_string(Enum.reverse(acc)), rest}
   defp tokenize_string([?\\ | [?", ?\\ | rest]], acc), do: tokenize_string(rest, [?", ?\\ | acc])
   defp tokenize_string([char | rest], acc), do: tokenize_string(rest, [char | acc])
+  defp tokenize_string([], _acc), do: {:error, "Unterminated string"}
 
   defp tokenize_number(chars, acc \\ [])
-
   defp tokenize_number([char | rest], acc) when char in ~c'0123456789.-+eE' do
     tokenize_number(rest, [char | acc])
   end
-
   defp tokenize_number(rest, acc) do
     number_string = List.to_string(Enum.reverse(acc))
     if acc == [] do
@@ -65,7 +62,6 @@ defmodule JsonLexer do
         float when is_float(float) -> {:float, float}
       end
       {token, rest}
-
     end
   end
 
